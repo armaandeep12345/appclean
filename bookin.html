@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Aeron Dry Cleaners</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #333;
+        }
+        header {
+            background-color: #c00;
+            color: #fff;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .booking {
+            background: #ffecec;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        input, select, button {
+            width: 90%;
+            max-width: 300px;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #c00;
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #900;
+        }
+    </style>
+</head>
+<body>
+    <header>New Aeron Dry Cleaners</header>
+    
+    <section class="booking">
+        <h2>Book a Pickup</h2>
+        <form id="bookingForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required>
+            
+            <label for="service">Select Service:</label>
+            <select id="service">
+                <option>Dry Cleaning</option>
+                <option>Ironing</option>
+                <option>Wash & Fold</option>
+            </select>
+            
+            <label for="date">Pickup Date:</label>
+            <input type="date" id="date" required>
+            
+            <button type="submit">Book Now</button>
+        </form>
+    </section>
+    
+    <script>
+        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            let service = document.getElementById("service").value;
+            let date = document.getElementById("date").value;
+
+            if (name && phone && service && date) {
+                fetch("http://localhost:5000/book", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, phone, service, date })
+                })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(error => console.error("Error:", error));
+
+                document.getElementById("bookingForm").reset();
+            } else {
+                alert("Please fill out all fields.");
+            }
+        });
+    </script>
+</body>
+</html>

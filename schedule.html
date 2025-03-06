@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Schedule</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        .schedule-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .schedule-header {
+            background: linear-gradient(to right, #4a90e2, #7e57c2);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-header h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 100px repeat(7, 1fr);
+            gap: 2px;
+            background-color: #eef2f7;
+            padding: 2px;
+        }
+
+        .time-slot, .day-header, .schedule-item {
+            padding: 15px;
+            background-color: white;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .day-header {
+            background: linear-gradient(to bottom, #4a90e2, #357abd);
+            color: white;
+            font-weight: bold;
+            padding: 20px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-slot {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+            border-right: 3px solid #eef2f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .schedule-item {
+            min-height: 90px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eef2f7;
+        }
+
+        .schedule-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #f8f9fa;
+            border: 1px solid #4a90e2;
+        }
+
+        /* Add some responsive design */
+        @media (max-width: 768px) {
+            .schedule-grid {
+                grid-template-columns: 80px repeat(7, 1fr);
+                font-size: 0.9em;
+            }
+
+            .schedule-header h1 {
+                font-size: 2em;
+            }
+
+            body {
+                padding: 10px;
+            }
+        }
+
+        /* Add animation for items */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .schedule-item {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="schedule-container">
+        <div class="schedule-header">
+            <h1>Weekly Schedule</h1>
+        </div>
+        <div class="schedule-grid">
+            <div class="time-slot"></div>
+            <div class="day-header">Monday</div>
+            <div class="day-header">Tuesday</div>
+            <div class="day-header">Wednesday</div>
+            <div class="day-header">Thursday</div>
+            <div class="day-header">Friday</div>
+            <div class="day-header">Saturday</div>
+            <div class="day-header">Sunday</div>
+
+            <!-- Time slots from 9 AM to 5 PM -->
+            <div class="time-slot">9:00</div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+
+            <div class="time-slot">10:00</div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+
+            <div class="time-slot">11:00</div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+
+            <div class="time-slot">12:00</div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+
+            <div class="time-slot">13:00</div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+
+            <div class="time-slot">14:00</div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+
+            <div class="time-slot">15:00</div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+
+            <div class="time-slot">16:00</div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+
+            <div class="time-slot">17:00</div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+            <div class="schedule-item"></div>
+        </div>
+    </div>
+</body>
+</html> 

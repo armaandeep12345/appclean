@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Clothing Store</title>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.rating {
+    color: #ff9800;
+    margin-bottom: 10px;
+}
+
+.quantity-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.quantity-btn {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.quantity {
+    width: 30px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+}
+
+.add-to-cart {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+.product-image img {
+    width: 100%;
+    height: 250px; /* Set a fixed height */
+    object-fit: cover; /* Ensures images maintain aspect ratio and fill the space */
+    border-radius: 10px;
+}
+
+  </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <h1>Women's Clothing </h1>
+    </nav>
+
+    <div class="product-container">
+        
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/IMG_6506-scaled.webp" alt="Cotton Saree">
+            </div>
+            <div class="product-title">Cotton Saree</div>
+            <div class="rating">⭐⭐⭐⭐☆ (1,123)</div>
+           <a href="from1.html"> <button class="add-to-cart">Add to cart</button></a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/LNNMTOSET5-1.webp" alt="Silk Lehenga">
+            </div>
+            <div class="product-title">Silk Lehenga</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (987)</div>
+            <a href="from1.html"> <button class="add-to-cart">Add to cart</button></a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/download (1).jpg" alt="Anarkali Dress">
+            </div>
+            <div class="product-title">Anarkali Dress</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (1,450)</div>
+            <a href="from1.html"> <button class="add-to-cart">Add to cart</button></a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/642def7584102ebf579e5e8efa3093a0.jpg" alt="Kurti Set">
+            </div>
+            <div class="product-title">Kurti Set</div>
+            <div class="rating">⭐⭐⭐⭐ (789)</div>
+            <a href="from1.html"> <button class="add-to-cart">Add to cart</button></a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/ccfk1761a-red-silk-designer-heavy-bridal-lehenga-with-embroidery.jpg" alt="Bridal Lehenga">
+            </div>
+            <div class="product-title">Bridal Lehenga</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (560)</div>
+            <a href="from1.html"> <button class="add-to-cart">Add to cart</button></a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/download.jpg" alt="Designer Suit">
+            </div>
+            <div class="product-title">Designer Suit</div>
+            <div class="rating">⭐⭐⭐⭐⭐ (1,200)</div>
+            <a href="from1.html"> <button class="add-to-cart">Add to cart</button></a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/teal-resham-floor-length-designer-suit-186300-1000x1375.webp" alt="Party Wear">
+            </div>
+            <div class="product-title">Party Wear</div>
+            <div class="rating">⭐⭐⭐⭐ (980)</div>
+            <a href="from1.html"> <button class="add-to-cart">Add to cart</button></a>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+    addToCartButtons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            const productCard = event.target.closest(".product-card");
+            const itemName = productCard.querySelector(".product-title").textContent;
+            const quantity = parseInt(productCard.querySelector(".quantity").value);
+            const price = getProductPrice(itemName);
+
+            placeOrder(itemName, quantity, price);
+        });
+    });
+
+    // Increase/Decrease quantity
+    document.querySelectorAll(".quantity-btn").forEach(button => {
+        button.addEventListener("click", (event) => {
+            const inputField = event.target.closest(".quantity-container").querySelector(".quantity");
+            let value = parseInt(inputField.value);
+
+            if (event.target.classList.contains("increase")) {
+                inputField.value = value + 1;
+            } else if (event.target.classList.contains("decrease") && value > 1) {
+                inputField.value = value - 1;
+            }
+        });
+    });
+});
+
+// Function to get product price (Replace with dynamic data if needed)
+function getProductPrice(itemName) {
+    const prices = {
+        "Cotton Saree": 1500,
+        "Silk Lehenga": 2500
+    };
+    return prices[itemName] || 1000;
+}
+
+// Function to send order details to the backend
+function placeOrder(itemName, quantity, price) {
+    fetch("http://localhost:5000/order", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ item_name: itemName, quantity, price })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    })
+    .catch(error => {
+        console.error("Error placing order:", error);
+        alert("Failed to place order. Please try again.");
+    });
+}
+
+    </script>
+</body>
+</html>

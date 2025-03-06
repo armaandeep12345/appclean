@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@capacitor/android": "^7.0.1",
+    "@capacitor/core": "^7.0.1",
+    "@capacitor/ios": "^7.0.1",
+    "axios": "^1.7.9",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "mongoose": "^8.10.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.12.0",
+    "twilio": "^5.4.3"
+  },
+  "name": "new-folder-(2)",
+  "version": "1.0.0",
+  "description": "![AWS Lambda + CloudFront + Kinesis + DynamoDB architecture — phone number verification Web App & SMS](docs/phone-verification.png)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.1",
+    "concurrently": "^9.1.2"
+  }
+}

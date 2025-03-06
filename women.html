@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Grid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px; /* Optional: limit the max width */
+        }
+        .product-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .product-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .rating {
+            color: #ffa500;
+            margin: 5px 0;
+        }
+        .price {
+            color: #e60000;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .mrp {
+            text-decoration: line-through;
+            color: gray;
+            font-size: 14px;
+        }
+        .discount {
+            color: green;
+            font-size: 14px;
+        }
+        .add-to-cart {
+            background-color: #ff0000;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .add-to-cart:hover {
+            background-color: #e68a00;
+        }
+        .product-image img {
+    width: 100%;
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Ensures uniform sizing while preserving aspect ratio */
+    border-radius: 10px;
+}
+.quantity-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .quantity-btn {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .quantity {
+            font-size: 16px;
+            font-weight: bold;
+            width: 30px;
+            text-align: center;
+            margin: 0 10px;
+        }
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .product-title {
+                font-size: 14px;
+            }
+            .price, .mrp, .discount {
+                font-size: 14px;
+            }
+            .add-to-cart {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="product-grid">
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/642def7584102ebf579e5e8efa3093a0.jpg" alt="Kurta">
+            </div>
+            <div class="product-title">Kurta</div>
+            <div class="rating">⭐⭐⭐⭐☆ (1,123)</div>
+            <div class="quantity-container">
+                <button class="quantity-btn decrease">-</button>
+                <input type="text" class="quantity" value="1" readonly>
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/IMG_6506-scaled.webp" alt="Cotton Saree">
+            </div>
+            <div class="product-title">Cotton Saree</div>
+            <div class="rating">⭐⭐⭐⭐☆ (1,123)</div>
+            <div class="quantity-container">
+                <button class="quantity-btn decrease">-</button>
+                <input type="text" class="quantity" value="1" readonly>
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/LNNMTOSET5-1.webp" alt="Silk Lehenga">
+            </div>
+            <div class="product-title">Silk Lehenga</div>
+            <div class="rating">⭐⭐⭐⭐☆ (1,123)</div>
+            <div class="quantity-container">
+                <button class="quantity-btn decrease">-</button>
+                <input type="text" class="quantity" value="1" readonly>
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/teal-resham-floor-length-designer-suit-186300-1000x1375.webp" alt="Designer Suit">
+            </div>
+            <div class="product-title">Designer Suit</div>
+            <div class="rating">⭐⭐⭐⭐☆ (1,123)</div>
+            <div class="quantity-container">
+                <button class="quantity-btn decrease">-</button>
+                <input type="text" class="quantity" value="1" readonly>
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/download.jpg" alt="Ethnic Gown">
+            </div>
+            <div class="product-title">Ethnic Gown</div>
+            <div class="rating">⭐⭐⭐⭐☆ (1,123)</div>
+            <div class="quantity-container">
+                <button class="quantity-btn decrease">-</button>
+                <input type="text" class="quantity" value="1" readonly>
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/91IgemfGjSL._AC_UY1100_.jpg" alt="Casual Dress">
+            </div>
+            <div class="product-title">Casual Dress</div>
+            <div class="rating">⭐⭐⭐⭐☆ (1,123)</div>
+            <div class="quantity-container">
+                <button class="quantity-btn decrease">-</button>
+                <input type="text" class="quantity" value="1" readonly>
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/1721104984801919451-Sayuri-Ishum-002.webp" alt="Party Wear">
+            </div>
+            <div class="product-title">Party Wear</div>
+            <div class="rating">⭐⭐⭐⭐☆ (1,123)</div>
+            <div class="quantity-container">
+                <button class="quantity-btn decrease">-</button>
+                <input type="text" class="quantity" value="1" readonly>
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="admin/women'img/pink-soft-silk-zari-weaving-wedding-saree-TrendOye-TSNJ-RJPT-VKGR-210006_1024x.webp" alt="Wedding Saree">
+            </div>
+            <div class="product-title">Wedding Saree</div>
+            <div class="rating">⭐⭐⭐⭐☆ (1,123)</div>
+            <div class="quantity-container">
+                <button class="quantity-btn decrease">-</button>
+                <input type="text" class="quantity" value="1" readonly>
+                <button class="quantity-btn increase">+</button>
+            </div>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll(".product-card").forEach(card => {
+            let quantityInput = card.querySelector(".quantity");
+            let increaseBtn = card.querySelector(".increase");
+            let decreaseBtn = card.querySelector(".decrease");
+            
+            increaseBtn.addEventListener("click", () => {
+                let quantity = parseInt(quantityInput.value);
+                quantityInput.value = quantity + 1;
+            });
+            
+            decreaseBtn.addEventListener("click", () => {
+                let quantity = parseInt(quantityInput.value);
+                if (quantity > 1) {
+                    quantityInput.value = quantity - 1;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

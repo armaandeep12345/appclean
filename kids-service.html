@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Clothing Dry Cleaning Services</title>
+    <style>
+        :root {
+            --primary-red: #e63946;
+            --light-red: #ff6b6b;
+            --dark-red: #d62828;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            position: relative;
+            color: var(--black);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-info {
+            flex: 1;
+        }
+
+        .service-title {
+            color: var(--dark-red);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .quantity-btn {
+            background-color: var(--light-red);
+            color: var(--white);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .quantity {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary-red);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--dark-red);
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--dark-red);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: var(--light-red);
+        }
+
+        .cart-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--white);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="service.html" class="back-btn">← Back</a>
+        <h1>Kids' Clothing Services</h1>
+        <p>Gentle care for your little ones' clothes</p>
+        <a href="#" class="cart-icon">🛒</a>
+    </div>
+
+    <div class="container">
+        <div class="service-card">
+            <div class="service-info">
+                <h2 class="service-title">School Uniform</h2>
+                <p>Complete uniform cleaning with stain removal</p>
+                <p class="price">$9.99</p>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="decreaseQuantity(0)">-</button>
+                    <span class="quantity" id="quantity0">0</span>
+                    <button class="quantity-btn" onclick="increaseQuantity(0)">+</button>
+                </div>
+            </div>
+            <button class="add-to-cart" onclick="addToCart(0)">Add to Cart</button>
+        </div>
+
+        <div class="service-card">
+            <div class="service-info">
+                <h2 class="service-title">Party Wear</h2>
+                <p>Delicate cleaning for special occasion outfits</p>
+                <p class="price">$12.99</p>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="decreaseQuantity(1)">-</button>
+                    <span class="quantity" id="quantity1">0</span>
+                    <button class="quantity-btn" onclick="increaseQuantity(1)">+</button>
+                </div>
+            </div>
+            <button class="add-to-cart" onclick="addToCart(1)">Add to Cart</button>
+        </div>
+
+        <div class="service-card">
+            <div class="service-info">
+                <h2 class="service-title">Winter Wear</h2>
+                <p>Coats, jackets, and warm clothing cleaning</p>
+                <p class="price">$14.99</p>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="decreaseQuantity(2)">-</button>
+                    <span class="quantity" id="quantity2">0</span>
+                    <button class="quantity-btn" onclick="increaseQuantity(2)">+</button>
+                </div>
+            </div>
+            <button class="add-to-cart" onclick="addToCart(2)">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        const quantities = [0, 0, 0];
+        const prices = [9.99, 12.99, 14.99];
+
+        function increaseQuantity(index) {
+            quantities[index]++;
+            updateQuantityDisplay(index);
+        }
+
+        function decreaseQuantity(index) {
+            if (quantities[index] > 0) {
+                quantities[index]--;
+                updateQuantityDisplay(index);
+            }
+        }
+
+        function updateQuantityDisplay(index) {
+            document.getElementById(`quantity${index}`).textContent = quantities[index];
+        }
+
+        function addToCart(index) {
+            if (quantities[index] > 0) {
+                const total = quantities[index] * prices[index];
+                alert(`Added to cart:\nQuantity: ${quantities[index]}\nTotal: $${total.toFixed(2)}`);
+                quantities[index] = 0;
+                updateQuantityDisplay(index);
+            }
+        }
+    </script>
+</body>
+</html> 
