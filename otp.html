@@ -12,15 +12,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('cartoon-clothing_1110-709.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: url('cartoon-clothing_1110-709.jpg') no-repeat center center/cover;
             margin: 0;
         }
         .container-box {
-            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 90%;
             max-width: 400px;
@@ -42,37 +40,28 @@
             width: 100%;
             border-radius: 5px;
             margin-top: 10px;
+            cursor: pointer;
         }
-        .btn-custom:hover {
-            background-color: #45a049;
-        }
-        #loading {
-            display: none;
-            text-align: center;
-            margin-top: 10px;
-        }
-        #otp-section {
-            margin-top: 20px;
-        }
-        .iti {
-            width: 100%;
-        }
+        .btn-custom:hover { background-color: #45a049; }
+        #otp-section, #loading { display: none; }
     </style>
 </head>
 <body>
     <div class="container-box">
         <h4>Enter Phone Number</h4>
-        <input type="tel" id="phone" class="form-control my-2" placeholder="Enter Mobile Number" />
+        <input type="tel" id="phone" class="form-control my-2" placeholder="Enter Mobile Number">
         <button class="btn-custom" onclick="sendOTP()">Send OTP</button>
         
-        <div id="otp-section" style="display: none;">
-            <h4>Enter OTP Code</h4>
-            <input type="text" class="otp-input" maxlength="1" id="otp1">
-            <input type="text" class="otp-input" maxlength="1" id="otp2">
-            <input type="text" class="otp-input" maxlength="1" id="otp3">
-            <input type="text" class="otp-input" maxlength="1" id="otp4">
-            <input type="text" class="otp-input" maxlength="1" id="otp5">
-            <input type="text" class="otp-input" maxlength="1" id="otp6">
+        <div id="otp-section">
+            <h4>Enter OTP</h4>
+            <div>
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+            </div>
             <button class="btn-custom" onclick="verifyOTP()">Verify OTP</button>
         </div>
         <p id="message"></p>
@@ -82,44 +71,20 @@
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.15/build/js/intlTelInput.min.js"></script>
     <script>
         let generatedOTP;
-        
-        // Initialize the phone input with intl-tel-input
-        const input = document.querySelector("#phone");
-        const iti = intlTelInput(input, {
-            initialCountry: "in", // Set default country
-            separateDialCode: true,
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.15/build/js/utils.js"
-        });
+        const phoneInput = document.querySelector("#phone");
+        intlTelInput(phoneInput, { initialCountry: "in", separateDialCode: true });
 
         function sendOTP() {
-            let phone = iti.getNumber();
-            if (iti.isValidNumber()) {
-                generatedOTP = Math.floor(100000 + Math.random() * 900000);
-                alert("Your OTP is: " + generatedOTP); // Simulating API response
-                document.getElementById("otp-section").style.display = "block";
-                document.getElementById("message").innerText = "OTP Sent Successfully!";
-            } else {
-                document.getElementById("message").innerText = "Enter a valid phone number.";
-            }
+            generatedOTP = Math.floor(100000 + Math.random() * 900000);
+            alert("Your OTP is: " + generatedOTP);
+            document.getElementById("otp-section").style.display = "block";
         }
 
         function verifyOTP() {
-            let enteredOTP = document.getElementById("otp1").value +
-                             document.getElementById("otp2").value +
-                             document.getElementById("otp3").value +
-                             document.getElementById("otp4").value +
-                             document.getElementById("otp5").value +
-                             document.getElementById("otp6").value;
-            if (enteredOTP == generatedOTP) {
-                document.getElementById("message").innerText = "✅ OTP Verified Successfully!";
-                document.getElementById("loading").style.display = "block";
-                setTimeout(() => {
-                    window.location.href = "index.html";
-                }, 5000);
-            } else {
-                document.getElementById("message").innerText = "❌ Invalid OTP! Try Again.";
-            }
+            let enteredOTP = [...document.querySelectorAll('.otp-input')].map(i => i.value).join('');
+            document.getElementById("message").innerText = enteredOTP == generatedOTP ? "✅ OTP Verified!" : "❌ Invalid OTP!";
+            if (enteredOTP == generatedOTP) setTimeout(() => window.location.href = "home.html", 2000);
         }
-    </script> 
+    </script>
 </body>
 </html>
