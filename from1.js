@@ -12,24 +12,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// Database Connection
-const db = mysql.createConnection({
+// ✅ Use a MySQL Connection Pool (Keeps the connection alive)
+const db = mysql.createPool({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'drycleaner_db'
+    database: process.env.DB_NAME || 'drycleaner_db',
+    waitForConnections: true,
+    connectionLimit: 10,  // Allow up to 10 connections
+    queueLimit: 0
 });
 
-// Connect to DB
-db.connect(err => {
-    if (err) {
-        console.error('Database connection failed:', err);
-        process.exit(1);
-    }
-    console.log('Connected to database');
-});
-
-// Create Table if not exists
+// ✅ Create Table if not exists
 const createTableQuery = `
 CREATE TABLE IF NOT EXISTS form1 (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -47,11 +41,11 @@ db.query(createTableQuery, (err) => {
     if (err) {
         console.error('Error creating table:', err);
     } else {
-        console.log("Table 'form1' is ready");
+        console.log("✅ Table 'form1' is ready");
     }
 });
 
-// Order Submission Route
+// ✅ Order Submission Route
 app.post('/submit-order', (req, res) => {
     const { name, email, phone, address, product, size, quantity, notes } = req.body;
 
@@ -62,29 +56,41 @@ app.post('/submit-order', (req, res) => {
     const sql = `INSERT INTO form1 (name, email, phone, address, product, size, quantity, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
     const values = [name, email, phone, address, product, size, quantity, notes || ''];
 
-    db.query(sql, values, (err, result) => {
+    // ✅ Get a connection from the pool
+    db.getConnection((err, connection) => {
         if (err) {
-            console.error('Error inserting order:', err);
-            return res.status(500).json({ message: 'Order submission failed' });
+            console.error('❌ Database connection failed:', err);
+            return res.status(500).json({ message: 'Database connection error' });
         }
-        res.status(201).json({ message: 'Order placed successfully', orderId: result.insertId });
+
+        // ✅ Execute Query
+        connection.query(sql, values, (err, result) => {
+            connection.release();  // ✅ Release the connection
+
+            if (err) {
+                console.error('❌ Error inserting order:', err);
+                return res.status(500).json({ message: 'Order submission failed' });
+            }
+
+            res.status(201).json({ message: '✅ Order placed successfully', orderId: result.insertId });
+        });
     });
 });
 
-// Fetch all orders
+// ✅ Fetch all orders
 app.get('/get-orders', (req, res) => {
     const sql = 'SELECT * FROM form1';
 
     db.query(sql, (err, results) => {
         if (err) {
-            console.error('Error fetching orders:', err);
+            console.error('❌ Error fetching orders:', err);
             return res.status(500).json({ message: 'Failed to fetch orders' });
         }
         res.status(200).json(results);
     });
 });
 
-// Start Server
+// ✅ Start Server
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+    console.log(`🚀 Server running on http://localhost:${port}`);
 });
