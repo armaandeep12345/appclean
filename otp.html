@@ -17,7 +17,7 @@
             margin: 0;
         }
         .container-box {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -53,7 +53,6 @@
         }
         #otp-section {
             margin-top: 20px;
-            display: none;
         }
         .iti {
             width: 100%;
@@ -66,7 +65,7 @@
         <input type="tel" id="phone" class="form-control my-2" placeholder="Enter Mobile Number" />
         <button class="btn-custom" onclick="sendOTP()">Send OTP</button>
         
-        <div id="otp-section">
+        <div id="otp-section" style="display: none;">
             <h4>Enter OTP Code</h4>
             <input type="text" class="otp-input" maxlength="1" id="otp1">
             <input type="text" class="otp-input" maxlength="1" id="otp2">
@@ -83,27 +82,20 @@
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.15/build/js/intlTelInput.min.js"></script>
     <script>
         let generatedOTP;
-
-        // Initialize the phone input
+        
+        // Initialize the phone input with intl-tel-input
         const input = document.querySelector("#phone");
         const iti = intlTelInput(input, {
-            initialCountry: "in",
+            initialCountry: "in", // Set default country
             separateDialCode: true,
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.15/build/js/utils.js"
         });
-
-        // Check if OTP was already verified
-        window.onload = function () {
-            if (localStorage.getItem("otp_verified") === "true") {
-                window.location.href = "index.html"; // Redirect if already verified
-            }
-        };
 
         function sendOTP() {
             let phone = iti.getNumber();
             if (iti.isValidNumber()) {
                 generatedOTP = Math.floor(100000 + Math.random() * 900000);
-                alert("Your OTP is: " + generatedOTP); // Simulated OTP response
+                alert("Your OTP is: " + generatedOTP); // Simulating API response
                 document.getElementById("otp-section").style.display = "block";
                 document.getElementById("message").innerText = "OTP Sent Successfully!";
             } else {
@@ -118,21 +110,16 @@
                              document.getElementById("otp4").value +
                              document.getElementById("otp5").value +
                              document.getElementById("otp6").value;
-                             
             if (enteredOTP == generatedOTP) {
                 document.getElementById("message").innerText = "✅ OTP Verified Successfully!";
                 document.getElementById("loading").style.display = "block";
-
-                // Store OTP verification status
-                localStorage.setItem("otp_verified", "true");
-
                 setTimeout(() => {
-                    window.location.href = "home.html";
-                }, 2000);
+                    window.location.href = "index.html";
+                }, 5000);
             } else {
                 document.getElementById("message").innerText = "❌ Invalid OTP! Try Again.";
             }
         }
-    </script>
+    </script> 
 </body>
 </html>
